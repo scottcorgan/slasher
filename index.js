@@ -17,13 +17,18 @@ function slash (pathname) {
 
 function objectSlash (original, options) {
   var slashed = {};
+  var keys = Object.keys(original);
+  var len = keys.length;
+  var i = 0;
   
-  Object.keys(original).forEach(function (originalKey) {
+  for(i; i < len; i += 1) {
+    var originalKey = keys[i];
+    
     var key = (options.key === false) ? originalKey : slash(originalKey);
     var value = original[originalKey];
     
     slashed[key] = (options.value === false) ? value : slash(value);
-  });
+  }
   
   return slashed;
 }

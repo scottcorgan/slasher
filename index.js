@@ -6,6 +6,7 @@ var slasher = module.exports = function (data) {
   options = arguments[1] || {};
   
   if (typeof data === 'string') return slash(data);
+  if (typeof data === 'number') return slash(data+'');
   if (typeof data === 'object') return objectSlash(data, options);
   
   return data;

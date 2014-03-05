@@ -3,6 +3,7 @@ var test = require('tape');
 
 test('prefixes the path that does not already have a slash', function (t) {
 	t.equal(slash('pathname'), '/pathname', 'added slash');
+  t.equal(slash(123), '/123', 'added slash to number');
 	t.end();
 });
 

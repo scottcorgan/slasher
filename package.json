@@ -1,6 +1,6 @@
 {
   "name": "slasher",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Prefix a path with leading slash",
   "main": "index.js",
   "directories": {

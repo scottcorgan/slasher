@@ -35,3 +35,14 @@ test('returns the same data if it is an invalid data type', function (t) {
   t.equal(slash(fn).toString(), fn.toString(), 'returned same function');
   t.end();
 });
+
+test('does not add slashes to nested objects as values, only to the keys', function (t) {
+  var obj = {
+    key: {
+      sub: 'value'
+    }
+  };
+  
+  t.deepEqual(slash(obj), {'/key': { sub: 'value'}}, 'skip nested objects');
+  t.end();
+});

@@ -28,7 +28,11 @@ function objectSlash (original, options) {
     var key = (options.key === false) ? originalKey : slash(originalKey);
     var value = original[originalKey];
     
-    slashed[key] = (options.value === false) ? value : slash(value);
+    slashed[key] = (options.value === false)
+      ? value 
+      : (typeof value === 'string')
+        ? slash(value)
+        : value;
   }
   
   return slashed;

@@ -1,13 +1,13 @@
 {
   "name": "slasher",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "Prefix a path with leading slash",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "tape test/index.js | tap-dot"
+    "test": "tape test/index.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -25,8 +25,8 @@
     "url": "https://github.com/scottcorgan/slasher/issues"
   },
   "devDependencies": {
-    "tape": "~2.3.2",
-    "tap-spec": "~0.1.3",
-    "tap-dot": "^0.2.1"
+    "tap-dot": "^0.2.3",
+    "tap-spec": "^1.0.1",
+    "tape": "^3.0.3"
   }
 }

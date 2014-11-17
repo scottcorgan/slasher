@@ -2,32 +2,54 @@ var path = require('path');
 var join = path.join;
 var normalize = path.normalize;
 
-var slasher = module.exports = function (data) {
-  options = arguments[1] || {};
+module.exports = function (data) {
   
-  if (typeof data === 'string') return slash(data);
-  if (typeof data === 'number') return slash(data+'');
-  if (typeof data === 'object') return objectSlash(data, options);
+  if (typeof data === 'string') {
+    return slash(data);
+  }
+  
+  if (typeof data === 'number') {
+    return slash(data+'');
+  }
+  
+  if (typeof data === 'object') {
+    return objectSlash(data, arguments[1] || {});
+  }
   
   return data;
 };
 
 function slash (pathname) {
+  
   return normalize(join('/', pathname));
 }
 
 function objectSlash (original, options) {
-  var slashed = {};
+  
+  var keyMutator = options.keyMutator || slash;
   var keys = Object.keys(original);
   var len = keys.length;
-  var i = 0;
+  var slashed = {};
   
-  for(i; i < len; i += 1) {
+  for(var i = 0; i < len; i += 1) {
     var originalKey = keys[i];
+    var key = originalKey;
     
-    var key = (options.key === false) ? originalKey : slash(originalKey);
+    // Ignore keys if set to false
+    if (options.key !== false) {
+      
+      // No comparator
+      if (!options.keyMatches) {
+        key = keyMutator(originalKey);
+      }
+      
+      // Use comparator to determin if slash should be added
+      else if (options.keyMatches(key)) {
+        key = keyMutator(originalKey);
+      }
+    }
+    
     var value = original[originalKey];
-    
     slashed[key] = (options.value === false)
       ? value 
       : (typeof value === 'string')
@@ -37,5 +59,3 @@ function objectSlash (original, options) {
   
   return slashed;
 }
-
-module.exports = slasher;

@@ -1,6 +1,6 @@
 {
   "name": "slasher",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Prefix a path with leading slash",
   "main": "index.js",
   "directories": {
@@ -28,5 +28,8 @@
     "tap-dot": "^0.2.3",
     "tap-spec": "^1.0.1",
     "tape": "^3.0.3"
+  },
+  "dependencies": {
+    "toxic": "^1.0.0"
   }
 }
